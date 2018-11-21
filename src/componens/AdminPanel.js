@@ -1,78 +1,55 @@
 import React from "react";
 
 class AdminPanel extends React.Component {
-
   constructor() {
     super();
-    this.state ={
-      book :{
-        name : "",
+    this.state = {
+      book: {
+        name: "",
         author: "",
         description: "",
         onStock: false,
-        image: ""   
-      },
-      books :[]
+        image: ""
+      }
     };
+  }
 
-  };
-
-  handleChange = (event) => {
-
+  handleChange = event => {
     let newBook;
 
-    if(event.target.name === "onStock") {
-       newBook = {
-         ...this.state.book,
-         [event.target.name]: event.target.checked
-        
-       };
+    if (event.target.name === "onStock") {
+      newBook = {
+        ...this.state.book,
+        [event.target.name]: event.target.checked
+      };
     } else {
+      newBook = {
+        ...this.state.book,
+        [event.target.name]: event.target.value
+      };
+    }
+    this.setState({
+      book: newBook
+    });
+  };
 
-    newBook = {
-          ...this.state.book,
-         [event.target.name]: event.target.value
-    };
-  }
-   this.setState({
-     book: newBook
-   }); 
-  }
-
-  addNewBook = (event) => {
+  addNewBook = event => {
+    //this.props.books
 
     event.preventDefault();
+    let newBook = { ...this.state.book };
 
-    let newBooks = [...this.state.books];
-    let newBook = {...this.state.book};
+    this.props.addBook(newBook);
 
-    newBooks.push(newBook);
-
-    this.setState({
-      books: newBooks    
-     /* book:{
-        name : "",
-        author: "",
-        description: "",
-        onStock: false,
-        image: "" */  
-
-      });
-
-      let resetBook = {...this.state.book}
-       Object.keys(resetBook).map(key=> {
-      resetBook[key] = typeof resetBook[key] ===   'boolean' ? false : '';
-       });
+    let resetBook = { ...this.state.book };
+    Object.keys(resetBook).map(key => {
+      resetBook[key] = typeof resetBook[key] === "boolean" ? false : "";
+    });
 
     this.setState({
       book: resetBook
-    })
-
-  }
-        
-  
-
-
+    });
+  };
 
   render() {
     const checkboxColor = {
@@ -89,7 +66,8 @@ class AdminPanel extends React.Component {
               id="name"
               name="name"
               className="form-control"
-              onChange={this.handleChange}  value={this.state.book.name}
+              onChange={this.handleChange}
+              value={this.state.book.name}
             />
           </div>
           <div className="form-group">
@@ -99,7 +77,8 @@ class AdminPanel extends React.Component {
               id="author"
               name="author"
               className="form-control"
-              onChange={this.handleChange}  value={this.state.book.author}
+              onChange={this.handleChange}
+              value={this.state.book.author}
             />
           </div>
           <div className="form-group">
@@ -108,24 +87,26 @@ class AdminPanel extends React.Component {
               id="description"
               name="description"
               className="form-control"
-              onChange={this.handleChange}  value={this.state.book.description}
+              onChange={this.handleChange}
+              value={this.state.book.description}
             />
           </div>
           <div className="form-group">
             <label
               htmlFor="onStock"
               className="form-check-label"
-              style={checkboxColor}             
+              style={checkboxColor}
             >
-              Dostępność: 
+              Dostępność:
             </label>
-            
+
             <input
               type="checkbox"
               id="onStock"
               name="onStock"
               className="form-check"
-              onChange={this.handleChange}  value={this.state.book.onStock}
+              onChange={this.handleChange}
+              value={this.state.book.onStock}
             />
           </div>
           <div className="form-group">
@@ -134,13 +115,14 @@ class AdminPanel extends React.Component {
               id="image"
               name="image"
               className="form-control"
-              onChange={this.handleChange}  value={this.state.book.image}
+              onChange={this.handleChange}
+              value={this.state.book.image}
             />
           </div>
           <button type="submit" className="btn btn-success">
             Dodaj
           </button>
-          </form>
+        </form>
       </div>
     );
   }

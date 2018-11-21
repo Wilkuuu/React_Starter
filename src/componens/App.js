@@ -6,14 +6,48 @@ import Inventory from "./Inventory";
 import '../index.css';
 
 class App extends React.Component {
+
+    constructor() {
+      super() ;
+      this.state ={      
+        books :[],
+        order : []
+      
+
+      }
+    }
+
+    addNewBook = (book) => {         
+      let newBooks = [...this.state.books];
+      newBooks.push(book);  
+      this.setState({
+        books: newBooks 
+       });          
+    }
+
+    addToOrder = (book) => {
+      this.setState({
+        order : [...this.state.order, book]
+      })
+
+    }
+
+    removeFromOrder = (title) => {
+      this.setState({
+        order: this.state.order.filter( book => title!==book.name)
+      })
+
+    }
+
+
   render() {
     return (
       <div className="app container">
         <Header />
         <div className="row">
-        <Inventory />
+        <Inventory books={this.state.books} addToOrder={this.addToOrder}/>
         <Orders />
-        <AdminPanel />
+        <AdminPanel books={this.state.books} addBook ={this.addNewBook}/>
         </div>
       </div>
     );
@@ -21,3 +55,4 @@ class App extends React.Component {
 }
 
 export default App;
+ 
