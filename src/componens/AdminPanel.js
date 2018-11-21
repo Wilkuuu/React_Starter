@@ -10,10 +10,9 @@ class AdminPanel extends React.Component {
         author: "",
         description: "",
         onStock: false,
-        image: ""
-        
-        
-      }
+        image: ""   
+      },
+      books :[]
     };
 
   };
@@ -37,10 +36,41 @@ class AdminPanel extends React.Component {
   }
    this.setState({
      book: newBook
-   });
-  
+   }); 
+  }
+
+  addNewBook = (event) => {
+
+    event.preventDefault();
+
+    let newBooks = [...this.state.books];
+    let newBook = {...this.state.book};
+
+    newBooks.push(newBook);
+
+    this.setState({
+      books: newBooks    
+     /* book:{
+        name : "",
+        author: "",
+        description: "",
+        onStock: false,
+        image: "" */  
+
+      });
+
+      let resetBook = {...this.state.book}
+       Object.keys(resetBook).map(key=> {
+      resetBook[key] = typeof resetBook[key] ===   'boolean' ? false : '';
+       });
+
+    this.setState({
+      book: resetBook
+    })
 
   }
+        
+  
 
 
 
@@ -51,7 +81,7 @@ class AdminPanel extends React.Component {
 
     return (
       <div className="adminpanel col-md-4">
-        <form>
+        <form onSubmit={this.addNewBook}>
           <div className="form-group">
             <input
               type="text"
@@ -85,17 +115,16 @@ class AdminPanel extends React.Component {
             <label
               htmlFor="onStock"
               className="form-check-label"
-              style={checkboxColor}
-             
+              style={checkboxColor}             
             >
-              Dostępność:                   {" "}
+              Dostępność: 
             </label>
-            <hr></hr>
+            
             <input
               type="checkbox"
               id="onStock"
               name="onStock"
-              className="form-check-input"
+              className="form-check"
               onChange={this.handleChange}  value={this.state.book.onStock}
             />
           </div>
