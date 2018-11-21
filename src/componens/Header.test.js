@@ -19,7 +19,8 @@ it('renders without crashing', () => {
 it('Correct', () => {
   const wrapp = shallow(<Header/>);
   //console.log(wrapp.debug());
-  expect(wrapp.find('h1').text()).toBe('Header')
+  expect(wrapp.find('h1').text()).toBe('Black Books');
+  wrapp.setState
 });
 
 })
