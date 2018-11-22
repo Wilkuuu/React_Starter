@@ -1,9 +1,11 @@
 import React from "react";
+import { fbase } from "../fbase";
 
 class AdminPanel extends React.Component {
   constructor() {
     super();
     this.state = {
+      books: [],
       book: {
         name: "",
         author: "",
@@ -34,12 +36,14 @@ class AdminPanel extends React.Component {
   };
 
   addNewBook = event => {
-    //this.props.books
-
     event.preventDefault();
     let newBook = { ...this.state.book };
 
-    this.props.addBook(newBook);
+    // this.props.addBook(newBook);
+
+    this.setState({
+      books: [...this.state.books, newBook]
+    });
 
     let resetBook = { ...this.state.book };
     Object.keys(resetBook).map(key => {
@@ -50,6 +54,18 @@ class AdminPanel extends React.Component {
       book: resetBook
     });
   };
+
+  componentDidMount() {
+   this.ref =  fbase.syncState("bookstore/books", {
+      context: this,
+      state: 'books'
+    });
+  }
+
+
+  componentWillUnmount() {
+    fbase.removeBinding(this.ref)
+  }
 
   render() {
     const checkboxColor = {
