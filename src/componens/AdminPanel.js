@@ -35,7 +35,7 @@ class AdminPanel extends React.Component {
     });
   };
 
-  addNewBook = (event) => {
+  addNewBook = event => {
     // event.preventDefault();
     // let newBook = { ...this.state.book };
 
@@ -54,8 +54,13 @@ class AdminPanel extends React.Component {
     //   book: resetBook
     // });
 
+    // if(Array.isArray(this.state.books))
+    //    { this.setState({books: [...this.state.books, newBook]
+    //   })} else {
+    //    this.setState({books: [newBook]})}
+
     event.preventDefault();
-    let newBook ={...this.state.book};
+    let newBook = { ...this.state.book };
 
     this.setState({
       books: [...this.state.books, newBook],
@@ -67,25 +72,17 @@ class AdminPanel extends React.Component {
         image: ""
       }
     });
-
-
-
   };
 
-
-
-
-
   componentDidMount() {
-   this.ref =  fbase.syncState("bookstore/books", {
+    this.ref = fbase.syncState("bookstore/books", {
       context: this,
-      state: 'books'
+      state: "books"
     });
   }
 
-
   componentWillUnmount() {
-    fbase.removeBinding(this.ref)
+    fbase.removeBinding(this.ref);
   }
 
   render() {
