@@ -2,42 +2,39 @@ import React from "react";
 import Header from "./Header";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
-import '../index.css';
+import "../index.css";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      order: []
+    };
+  }
 
-    constructor() {
-      super() ;
-      this.state ={      
-      order : []
-      
+  addToOrder = book => {
+    this.setState({
+      order: [...this.state.order, book]
+    });
+  };
 
-      }
-    }
-
- 
-    addToOrder = (book) => {
-      this.setState({
-        order : [...this.state.order, book]
-      })
-
-    }
-
-    removeFromOrder = (title) => {
-      this.setState({
-        order: this.state.order.filter( book => title!==book.name)
-      })
-
-    }
-
+  removeFromOrder = title => {
+    this.setState({
+      order: this.state.order.filter(book => title !== book.name)
+    });
+  };
 
   render() {
     return (
       <div className="app container">
         <Header />
         <div className="row">
-        <Inventory books={this.state.books} addToOrder={this.addToOrder}/>
-        <Orders order={this.state.order} removeFromOrder={this.removeFromOrder}/>         
+          <Inventory books={this.state.books} addToOrder={this.addToOrder} />
+          
+          <Orders
+            order={this.state.order}
+            removeFromOrder={this.removeFromOrder}
+          />
         </div>
       </div>
     );
@@ -45,4 +42,3 @@ class App extends React.Component {
 }
 
 export default App;
- 

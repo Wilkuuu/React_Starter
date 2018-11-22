@@ -1,47 +1,43 @@
-import React from 'react';
-import BookView from './BookView';
-import {fbase} from '../fbase';
+import React from "react";
+import BookView from "./BookView";
+import { fbase, firebaseApp } from "../fbase";
 
 class Inventory extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+        books:[]
+    };
+  }
 
-    constructor() {
-        super();
-        this.state ={
-        
-        }
+  componentDidMount() {
+    this.ref = fbase.syncState("bookstore/books", {
+      context: this,
+      state: "books"
+    });
+  }
+
+  componentWillUnmount() {
+    fbase.removeBinding(this.ref);
+  }
+
+  render() {
+    let bookList = <h4> Brak danych</h4>;
+
+    if (Array.isArray(this.state.books)) {
+      bookList = this.state.books.map(book => {
+        return <BookView key={book.name} book={book} addToOrder={this.props.addToOrder} />;
+      });     
     }
 
-    componentDidMount() {
-        this.ref = fbase.syncState("bookstore/books", {
-          context: this,
-          state: "books"
-        });
-      }
-    
-      componentWillUnmount() {
-        fbase.removeBinding(this.ref);
-      }
+    return (
+      <div className="inventory col-md-6">
+        <div className="list_title"> Lista książek: </div>
+        {bookList}
+      </div>
+    );
 
-
-    render() {
-       
-        let bookList =<h4> Brak danych</h4>
-
-        if(Array.isArray(this.state.book)){        
-        bookList= this.state.books.map(book => {
-            return <BookView book={book} addToOrder={this.props.addToOrder}/>
-        });}
-
-        return (
-        <div className="inventory col-md-6">
-                {bookList}
-        </div>
-            );
-    }
-
-    
-
-
+  }
 }
 
-export default Inventory ;
+export default Inventory;
