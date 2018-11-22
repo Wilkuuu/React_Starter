@@ -46,7 +46,7 @@ class App extends React.Component {
         <Header />
         <div className="row">
         <Inventory books={this.state.books} addToOrder={this.addToOrder}/>
-        <Orders />
+        <Orders order={this.state.order} removeFromOrder={this.removeFromOrder}/>
         <AdminPanel books={this.state.books} addBook ={this.addNewBook}/>
         </div>
       </div>

@@ -17,7 +17,9 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": <form>
+      "children": <form
+        onSubmit={[Function]}
+      >
         <div
           className="form-group"
         >
@@ -25,8 +27,10 @@ ShallowWrapper {
             className="form-control"
             id="name"
             name="name"
+            onChange={[Function]}
             placeholder="Nazwa ksiazki"
             type="text"
+            value=""
           />
         </div>
         <div
@@ -36,8 +40,10 @@ ShallowWrapper {
             className="form-control"
             id="author"
             name="author"
+            onChange={[Function]}
             placeholder="Autor"
             type="text"
+            value=""
           />
         </div>
         <div
@@ -47,7 +53,9 @@ ShallowWrapper {
             className="form-control"
             id="description"
             name="description"
+            onChange={[Function]}
             placeholder="Opis książki"
+            value=""
           />
         </div>
         <div
@@ -55,7 +63,7 @@ ShallowWrapper {
         >
           <label
             className="form-check-label"
-            htmlFor="bookOnStock"
+            htmlFor="onStock"
             style={
               Object {
                 "color": "white",
@@ -63,14 +71,14 @@ ShallowWrapper {
             }
           >
             Dostępność:
-             
           </label>
           <input
             className="form-check"
-            id="bookOnStock"
-            name="bookOnStock"
-            placeholder="Dostęność książki"
+            id="onStock"
+            name="onStock"
+            onChange={[Function]}
             type="checkbox"
+            value={false}
           />
         </div>
         <div
@@ -80,7 +88,9 @@ ShallowWrapper {
             className="form-control"
             id="image"
             name="image"
+            onChange={[Function]}
             placeholder="Grafika"
+            value=""
           />
         </div>
         <button
@@ -106,8 +116,10 @@ ShallowWrapper {
               className="form-control"
               id="name"
               name="name"
+              onChange={[Function]}
               placeholder="Nazwa ksiazki"
               type="text"
+              value=""
             />
           </div>,
           <div
@@ -117,8 +129,10 @@ ShallowWrapper {
               className="form-control"
               id="author"
               name="author"
+              onChange={[Function]}
               placeholder="Autor"
               type="text"
+              value=""
             />
           </div>,
           <div
@@ -128,7 +142,9 @@ ShallowWrapper {
               className="form-control"
               id="description"
               name="description"
+              onChange={[Function]}
               placeholder="Opis książki"
+              value=""
             />
           </div>,
           <div
@@ -136,7 +152,7 @@ ShallowWrapper {
           >
             <label
               className="form-check-label"
-              htmlFor="bookOnStock"
+              htmlFor="onStock"
               style={
                 Object {
                   "color": "white",
@@ -144,14 +160,14 @@ ShallowWrapper {
               }
             >
               Dostępność:
-               
             </label>
             <input
               className="form-check"
-              id="bookOnStock"
-              name="bookOnStock"
-              placeholder="Dostęność książki"
+              id="onStock"
+              name="onStock"
+              onChange={[Function]}
               type="checkbox"
+              value={false}
             />
           </div>,
           <div
@@ -161,7 +177,9 @@ ShallowWrapper {
               className="form-control"
               id="image"
               name="image"
+              onChange={[Function]}
               placeholder="Grafika"
+              value=""
             />
           </div>,
           <button
@@ -171,6 +189,7 @@ ShallowWrapper {
             Dodaj
           </button>,
         ],
+        "onSubmit": [Function],
       },
       "ref": null,
       "rendered": Array [
@@ -183,8 +202,10 @@ ShallowWrapper {
               className="form-control"
               id="name"
               name="name"
+              onChange={[Function]}
               placeholder="Nazwa ksiazki"
               type="text"
+              value=""
             />,
             "className": "form-group",
           },
@@ -197,8 +218,10 @@ ShallowWrapper {
               "className": "form-control",
               "id": "name",
               "name": "name",
+              "onChange": [Function],
               "placeholder": "Nazwa ksiazki",
               "type": "text",
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -215,8 +238,10 @@ ShallowWrapper {
               className="form-control"
               id="author"
               name="author"
+              onChange={[Function]}
               placeholder="Autor"
               type="text"
+              value=""
             />,
             "className": "form-group",
           },
@@ -229,8 +254,10 @@ ShallowWrapper {
               "className": "form-control",
               "id": "author",
               "name": "author",
+              "onChange": [Function],
               "placeholder": "Autor",
               "type": "text",
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -247,7 +274,9 @@ ShallowWrapper {
               className="form-control"
               id="description"
               name="description"
+              onChange={[Function]}
               placeholder="Opis książki"
+              value=""
             />,
             "className": "form-group",
           },
@@ -260,7 +289,9 @@ ShallowWrapper {
               "className": "form-control",
               "id": "description",
               "name": "description",
+              "onChange": [Function],
               "placeholder": "Opis książki",
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -276,7 +307,7 @@ ShallowWrapper {
             "children": Array [
               <label
                 className="form-check-label"
-                htmlFor="bookOnStock"
+                htmlFor="onStock"
                 style={
                   Object {
                     "color": "white",
@@ -284,14 +315,14 @@ ShallowWrapper {
                 }
               >
                 Dostępność:
-                 
               </label>,
               <input
                 className="form-check"
-                id="bookOnStock"
-                name="bookOnStock"
-                placeholder="Dostęność książki"
+                id="onStock"
+                name="onStock"
+                onChange={[Function]}
                 type="checkbox"
+                value={false}
               />,
             ],
             "className": "form-group",
@@ -303,21 +334,15 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": Array [
-                  "Dostępność:",
-                  " ",
-                ],
+                "children": "Dostępność:",
                 "className": "form-check-label",
-                "htmlFor": "bookOnStock",
+                "htmlFor": "onStock",
                 "style": Object {
                   "color": "white",
                 },
               },
               "ref": null,
-              "rendered": Array [
-                "Dostępność:",
-                " ",
-              ],
+              "rendered": "Dostępność:",
               "type": "label",
             },
             Object {
@@ -326,10 +351,11 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "className": "form-check",
-                "id": "bookOnStock",
-                "name": "bookOnStock",
-                "placeholder": "Dostęność książki",
+                "id": "onStock",
+                "name": "onStock",
+                "onChange": [Function],
                 "type": "checkbox",
+                "value": false,
               },
               "ref": null,
               "rendered": null,
@@ -347,7 +373,9 @@ ShallowWrapper {
               className="form-control"
               id="image"
               name="image"
+              onChange={[Function]}
               placeholder="Grafika"
+              value=""
             />,
             "className": "form-group",
           },
@@ -360,7 +388,9 @@ ShallowWrapper {
               "className": "form-control",
               "id": "image",
               "name": "image",
+              "onChange": [Function],
               "placeholder": "Grafika",
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -392,7 +422,9 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": <form>
+        "children": <form
+          onSubmit={[Function]}
+        >
           <div
             className="form-group"
           >
@@ -400,8 +432,10 @@ ShallowWrapper {
               className="form-control"
               id="name"
               name="name"
+              onChange={[Function]}
               placeholder="Nazwa ksiazki"
               type="text"
+              value=""
             />
           </div>
           <div
@@ -411,8 +445,10 @@ ShallowWrapper {
               className="form-control"
               id="author"
               name="author"
+              onChange={[Function]}
               placeholder="Autor"
               type="text"
+              value=""
             />
           </div>
           <div
@@ -422,7 +458,9 @@ ShallowWrapper {
               className="form-control"
               id="description"
               name="description"
+              onChange={[Function]}
               placeholder="Opis książki"
+              value=""
             />
           </div>
           <div
@@ -430,7 +468,7 @@ ShallowWrapper {
           >
             <label
               className="form-check-label"
-              htmlFor="bookOnStock"
+              htmlFor="onStock"
               style={
                 Object {
                   "color": "white",
@@ -438,14 +476,14 @@ ShallowWrapper {
               }
             >
               Dostępność:
-               
             </label>
             <input
               className="form-check"
-              id="bookOnStock"
-              name="bookOnStock"
-              placeholder="Dostęność książki"
+              id="onStock"
+              name="onStock"
+              onChange={[Function]}
               type="checkbox"
+              value={false}
             />
           </div>
           <div
@@ -455,7 +493,9 @@ ShallowWrapper {
               className="form-control"
               id="image"
               name="image"
+              onChange={[Function]}
               placeholder="Grafika"
+              value=""
             />
           </div>
           <button
@@ -481,8 +521,10 @@ ShallowWrapper {
                 className="form-control"
                 id="name"
                 name="name"
+                onChange={[Function]}
                 placeholder="Nazwa ksiazki"
                 type="text"
+                value=""
               />
             </div>,
             <div
@@ -492,8 +534,10 @@ ShallowWrapper {
                 className="form-control"
                 id="author"
                 name="author"
+                onChange={[Function]}
                 placeholder="Autor"
                 type="text"
+                value=""
               />
             </div>,
             <div
@@ -503,7 +547,9 @@ ShallowWrapper {
                 className="form-control"
                 id="description"
                 name="description"
+                onChange={[Function]}
                 placeholder="Opis książki"
+                value=""
               />
             </div>,
             <div
@@ -511,7 +557,7 @@ ShallowWrapper {
             >
               <label
                 className="form-check-label"
-                htmlFor="bookOnStock"
+                htmlFor="onStock"
                 style={
                   Object {
                     "color": "white",
@@ -519,14 +565,14 @@ ShallowWrapper {
                 }
               >
                 Dostępność:
-                 
               </label>
               <input
                 className="form-check"
-                id="bookOnStock"
-                name="bookOnStock"
-                placeholder="Dostęność książki"
+                id="onStock"
+                name="onStock"
+                onChange={[Function]}
                 type="checkbox"
+                value={false}
               />
             </div>,
             <div
@@ -536,7 +582,9 @@ ShallowWrapper {
                 className="form-control"
                 id="image"
                 name="image"
+                onChange={[Function]}
                 placeholder="Grafika"
+                value=""
               />
             </div>,
             <button
@@ -546,6 +594,7 @@ ShallowWrapper {
               Dodaj
             </button>,
           ],
+          "onSubmit": [Function],
         },
         "ref": null,
         "rendered": Array [
@@ -558,8 +607,10 @@ ShallowWrapper {
                 className="form-control"
                 id="name"
                 name="name"
+                onChange={[Function]}
                 placeholder="Nazwa ksiazki"
                 type="text"
+                value=""
               />,
               "className": "form-group",
             },
@@ -572,8 +623,10 @@ ShallowWrapper {
                 "className": "form-control",
                 "id": "name",
                 "name": "name",
+                "onChange": [Function],
                 "placeholder": "Nazwa ksiazki",
                 "type": "text",
+                "value": "",
               },
               "ref": null,
               "rendered": null,
@@ -590,8 +643,10 @@ ShallowWrapper {
                 className="form-control"
                 id="author"
                 name="author"
+                onChange={[Function]}
                 placeholder="Autor"
                 type="text"
+                value=""
               />,
               "className": "form-group",
             },
@@ -604,8 +659,10 @@ ShallowWrapper {
                 "className": "form-control",
                 "id": "author",
                 "name": "author",
+                "onChange": [Function],
                 "placeholder": "Autor",
                 "type": "text",
+                "value": "",
               },
               "ref": null,
               "rendered": null,
@@ -622,7 +679,9 @@ ShallowWrapper {
                 className="form-control"
                 id="description"
                 name="description"
+                onChange={[Function]}
                 placeholder="Opis książki"
+                value=""
               />,
               "className": "form-group",
             },
@@ -635,7 +694,9 @@ ShallowWrapper {
                 "className": "form-control",
                 "id": "description",
                 "name": "description",
+                "onChange": [Function],
                 "placeholder": "Opis książki",
+                "value": "",
               },
               "ref": null,
               "rendered": null,
@@ -651,7 +712,7 @@ ShallowWrapper {
               "children": Array [
                 <label
                   className="form-check-label"
-                  htmlFor="bookOnStock"
+                  htmlFor="onStock"
                   style={
                     Object {
                       "color": "white",
@@ -659,14 +720,14 @@ ShallowWrapper {
                   }
                 >
                   Dostępność:
-                   
                 </label>,
                 <input
                   className="form-check"
-                  id="bookOnStock"
-                  name="bookOnStock"
-                  placeholder="Dostęność książki"
+                  id="onStock"
+                  name="onStock"
+                  onChange={[Function]}
                   type="checkbox"
+                  value={false}
                 />,
               ],
               "className": "form-group",
@@ -678,21 +739,15 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": Array [
-                    "Dostępność:",
-                    " ",
-                  ],
+                  "children": "Dostępność:",
                   "className": "form-check-label",
-                  "htmlFor": "bookOnStock",
+                  "htmlFor": "onStock",
                   "style": Object {
                     "color": "white",
                   },
                 },
                 "ref": null,
-                "rendered": Array [
-                  "Dostępność:",
-                  " ",
-                ],
+                "rendered": "Dostępność:",
                 "type": "label",
               },
               Object {
@@ -701,10 +756,11 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "className": "form-check",
-                  "id": "bookOnStock",
-                  "name": "bookOnStock",
-                  "placeholder": "Dostęność książki",
+                  "id": "onStock",
+                  "name": "onStock",
+                  "onChange": [Function],
                   "type": "checkbox",
+                  "value": false,
                 },
                 "ref": null,
                 "rendered": null,
@@ -722,7 +778,9 @@ ShallowWrapper {
                 className="form-control"
                 id="image"
                 name="image"
+                onChange={[Function]}
                 placeholder="Grafika"
+                value=""
               />,
               "className": "form-group",
             },
@@ -735,7 +793,9 @@ ShallowWrapper {
                 "className": "form-control",
                 "id": "image",
                 "name": "image",
+                "onChange": [Function],
                 "placeholder": "Grafika",
+                "value": "",
               },
               "ref": null,
               "rendered": null,
