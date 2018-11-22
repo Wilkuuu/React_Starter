@@ -11,7 +11,7 @@ class Orders extends React.Component {
     })
 
     return (
-      <div className="orders col-md-4">
+      <div className="orders col-md-6">
         <h1>{orderedBooks}</h1>
       </div>
     );
