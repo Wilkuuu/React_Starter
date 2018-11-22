@@ -46,7 +46,10 @@ class Header extends React.Component {
     return (
       <div className="row header" style={headerCss} onClick={this.handleClick} >       
         <h1>{this.state.bookstoreName}</h1>
-        <span display="flex"><button className="btn btn-sm btn-warning"><Link to="/admin">Go to admin panel</Link></button></span>
+        
+        
+        <Link to="/admin"><button className="btn btn-sm btn-info goToAdmin">Go to admin panel</button></Link>
+     
       </div>
     );
   }

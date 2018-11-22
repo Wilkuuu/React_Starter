@@ -13,29 +13,35 @@ code {
     monospace;
 }
 
-.app {
-  background-color: aqua;
-}
-
-.header {
-  background-color: brown;
-
-}
-
-.inventory {
-
-  background-color: green;
-
-}
-
-.orders {
-
-  background-color: darkgray;
-}
 
 .adminpanel {
 
   background-color: black;
   padding: 10px;
   
+}
+
+.list_title {
+  padding: 10px;
+  color: black;
+  font-size: 35px;
+
+}
+
+.singlebook {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.orderedView {
+  padding: 5px;
+  border-bottom: 2px solid black;
+  margin: 3px;
+
+}
+
+.goToAdmin {
+  float: right;
 }
