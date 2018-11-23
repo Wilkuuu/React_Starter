@@ -87,6 +87,14 @@ class AdminPanel extends React.Component {
     this.setState({ isLogged: false });
   }
 
+
+
+  logout() {
+    localStorage.setItem('login',false);
+    console.log('Logout works')
+    
+  }
+
   render() {
     return (
       <div>
