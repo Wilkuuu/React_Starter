@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 export default class BookForm extends React.Component {
@@ -8,7 +9,7 @@ constructor() {
         
     }
     
-    
+  
 }
 
 
@@ -26,6 +27,17 @@ constructor() {
                   className="form-control"
                   onChange={this.props.handleChange}
                   value={this.props.book.name}
+                />
+                </div>
+                <div className="form-group">
+                <input
+                  type="text"
+                  placeholder="Gatunek"
+                  id="genre"
+                  name="genre"
+                  className="form-control"
+                  onChange={this.props.handleChange}
+                  value={this.props.book.genre}
                 />
               </div>
               <div className="form-group">
@@ -81,6 +93,7 @@ constructor() {
               </button>
             </form>
             <button className="btn btn-sm btn-danger" onClick={this.props.logout}>Wyloguj</button>
+            <Link to="/"><button className="btn btn-block btn-info"><i className="fa fa-home">Powrót</i></button></Link>
           </div>
             </React.Fragment>
         )

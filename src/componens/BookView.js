@@ -13,8 +13,7 @@ export default class BookView extends React.Component {
           />
         </div>
         <div className="col-md-4">
-          <b>{this.props.book.name}</b> <i>{this.props.book.author}</i>
-          
+          <b>{this.props.book.name}</b> <i>{this.props.book.author}</i>          
           <br />
           <br />
         </div>
@@ -25,7 +24,10 @@ export default class BookView extends React.Component {
           >
             Dodaj do zamówienia
           </button>
+          <p className="description">{this.props.book.description}</p>
         </div>
+       
+          <span className="gatunek">{this.props.book.genre}</span>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import {firebaseApp  } from "../fbase";
+import {Link} from 'react-router-dom';
 
 export default class LogInForm extends React.Component {
   constructor() {
@@ -19,11 +20,12 @@ export default class LogInForm extends React.Component {
         this.state.password
       )   
       .then(() => {
-       this.props.changeLoggedIn(true)
+      this.props.changeLogIn();
+      console.log('potwierdzono')
       })
       .catch(() => {
         console.log("Error");
-      });
+      })
   };
 
   handleLoginChange = event => {
@@ -67,6 +69,7 @@ export default class LogInForm extends React.Component {
             </div>
           </div>
         </div>
+        <Link to="/"><button className="btn btn-block btn-info"><i className="fa fa-home">Powrót</i></button></Link>
         <div className="col-4" />
       </React.Fragment>
     );

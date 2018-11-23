@@ -15,7 +15,6 @@ class AdminPanel extends React.Component {
         onStock: false,
         image: ""
       },
-
       isLogged: false
     };
   }
@@ -57,7 +56,7 @@ class AdminPanel extends React.Component {
         onStock: true,
         image: ""
       },
-      isLogged: localStorage.getItem("login")
+     
     });
   };
 
@@ -77,34 +76,29 @@ class AdminPanel extends React.Component {
     fbase.removeBinding(this.ref);
   }
 
-  changeLoggedIn = newValue => {
-    this.setState({ isLogged: newValue });
-    localStorage.setItem("login", newValue);
+  changeLoggedIn = () => {
+    this.setState({ isLogged: !this.isLogged });
+    localStorage.setItem("login", this.isLogged);
   };
 
   logout = () =>  {    
     firebaseApp.auth().signOut();
-    this.setState({ isLogged: false });
+    this.setState({ isLogged: !this.isLogged });
   }
 
-
-
-  logout() {
-    localStorage.setItem('login',false);
-    console.log('Logout works')
     
-  }
+  
 
   render() {
     return (
       <div>
-        {!this.state.isLogged && (
+        {this.state.isLogged && (
           <LogInForm
             changeLoggedIn={this.changeLoggedIn}
             isLogged={this.state.isLogged}
           />
         )}
-        {this.state.isLogged && (
+        {!this.state.isLogged && (
           <BookForm
             logout={this.logout}
             addNewBook={this.addNewBook}
@@ -112,6 +106,9 @@ class AdminPanel extends React.Component {
             handleChange={this.handleChange}
           />
         )}
+        
+         
+        
       </div>
     );
   }

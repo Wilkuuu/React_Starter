@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
+import Footer from './Footer';
 import "../index.css";
 
 class App extends React.Component {
@@ -35,6 +36,9 @@ class App extends React.Component {
             order={this.state.order}
             removeFromOrder={this.removeFromOrder}
           />
+        </div>
+        <div className="row footer">
+          <Footer/>
         </div>
       </div>
     );
