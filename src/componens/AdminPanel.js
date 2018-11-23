@@ -15,15 +15,10 @@ class AdminPanel extends React.Component {
         onStock: false,
         image: ""
       },
-      password: "",
-      email: "",
+
       isLogged: false
     };
   }
-
-  handleLoginChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
 
   handleChange = event => {
     let newBook;
@@ -62,15 +57,14 @@ class AdminPanel extends React.Component {
         onStock: true,
         image: ""
       },
-      isLogged: false,
-      email: "",
-      password: ""
+      isLogged: localStorage.getItem("login")
     });
   };
 
   componentDidMount() {
     if (localStorage.getItem("login")) {
       this.setState({ isLogged: localStorage.getItem("login") });
+      console.log(this.state);
     }
 
     this.ref = fbase.syncState("bookstore/books", {
@@ -83,26 +77,14 @@ class AdminPanel extends React.Component {
     fbase.removeBinding(this.ref);
   }
 
-  autenticate = event => {
-    event.preventDefault();
-    firebaseApp
-      .auth()
-      .signInAndRetrieveDataWithEmailAndPassword(
-        this.state.email,
-        this.state.password
-      )
-      .then(() => {
-        this.setState({ isLogged: true });
-        localStorage.setItem("login", true);
-      })
-      .catch(() => {
-        console.log("Error");
-      });
+  changeLoggedIn = newValue => {
+    this.setState({ isLogged: newValue });
+    localStorage.setItem("login", newValue);
   };
 
-  logout() {
-    localStorage.setItem("login", false);
-    console.log("Logout works");
+  logout = () =>  {    
+    firebaseApp.auth().signOut();
+    this.setState({ isLogged: false });
   }
 
   render() {
@@ -110,10 +92,8 @@ class AdminPanel extends React.Component {
       <div>
         {!this.state.isLogged && (
           <LogInForm
-            handleChange={this.handleLoginChange}
-            autenticate={this.autenticate}
-            password={this.state.password}
-            email={this.state.email}
+            changeLoggedIn={this.changeLoggedIn}
+            isLogged={this.state.isLogged}
           />
         )}
         {this.state.isLogged && (

@@ -13,7 +13,6 @@ export default class Router extends React.Component  {
             <Switch>
                 <Route exact path="/" component={App}/>
                 <Route exact path="/admin" component={AdminPanel}/>
-
                 <Route component={NotFound}/>
             </Switch>
         </BrowserRouter>

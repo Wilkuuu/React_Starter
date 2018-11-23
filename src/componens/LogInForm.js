@@ -1,25 +1,43 @@
 import React from "react";
+import {firebaseApp  } from "../fbase";
 
 export default class LogInForm extends React.Component {
-  
+  constructor() {
+    super();
 
-    constructor() {
-    super() ;
+    this.state = {
+      password: "",
+      email: "",
+    };
+  }
 
-        this.state = {
+  autenticate = event => {
+    
+    event.preventDefault();
+     firebaseApp.auth().signInWithEmailAndPassword(
+        this.state.email,
+        this.state.password
+      )   
+      .then(() => {
+       this.props.changeLoggedIn(true)
+      })
+      .catch(() => {
+        console.log("Error");
+      });
+  };
 
-        };
-    }
+  handleLoginChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-
-    render() {
+  render() {
     return (
-      <React.Fragmen>
+      <React.Fragment>
         <div className="col-4" />
         <div className="col-4">
           <div className="card">
             <div className="card-body ">
-              <form onSubmit={this.props.autenticate}>
+              <form onSubmit={this.autenticate}>
                 <div className="form-group">
                   <input
                     type="text"
@@ -27,8 +45,8 @@ export default class LogInForm extends React.Component {
                     id="email"
                     name="email"
                     className="form-control"
-                    onChange={this.props.handleLoginChange}
-                    value={this.props.email}
+                    onChange={this.handleLoginChange}
+                    value={this.email}
                   />
                 </div>
                 <div className="form-group">
@@ -38,8 +56,8 @@ export default class LogInForm extends React.Component {
                     id="password"
                     name="password"
                     className="form-control"
-                    onChange={this.props.handleLoginChange}
-                    value={this.props.password}
+                    onChange={this.handleLoginChange}
+                    value={this.password}
                   />
                 </div>
                 <button type="submit" className="btn btn-primary btn-sm">
@@ -50,7 +68,7 @@ export default class LogInForm extends React.Component {
           </div>
         </div>
         <div className="col-4" />
-      </React.Fragmen>
+      </React.Fragment>
     );
   }
 }
