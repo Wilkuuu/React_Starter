@@ -86,6 +86,10 @@ class AdminPanel extends React.Component {
   };
 
   componentDidMount() {
+    if(localStorage.getItem('login')){
+    this.setState({isLogged :localStorage.getItem('login')})
+  }
+
     this.ref = fbase.syncState("bookstore/books", {
       context: this,
       state: "books"
@@ -100,11 +104,20 @@ class AdminPanel extends React.Component {
     event.preventDefault();
      firebaseApp.auth().signInAndRetrieveDataWithEmailAndPassword(this.state.email,this.state.password)
       .then( () =>{
-        this.setState({isLogged: true})
+        this.setState({isLogged: true});
+        localStorage.setItem('login',true)
       })
       .catch( () =>{
         console.log('Error')
       })
+  }
+
+
+
+  logout() {
+    localStorage.setItem('login',false);
+    console.log('Logout works')
+    
   }
 
   render() {
@@ -115,6 +128,11 @@ class AdminPanel extends React.Component {
     return (
       <div>
         {!this.state.isLogged &&
+        <React.Fragment>
+           <div className="col-4"></div>
+           <div className="col-4">
+        <div className="card">
+        <div className="card-body ">
         <form onSubmit={this.autenticate}>
           <div className="form-group">
          
@@ -138,6 +156,10 @@ class AdminPanel extends React.Component {
           </div>  
           <button type="submit" className="btn btn-primary btn-sm" >Zaloguj się </button>
         </form>  
+        </div></div></div>
+        <div className="col-4"></div>
+        </React.Fragment>
+
       }
 
 
@@ -208,6 +230,7 @@ class AdminPanel extends React.Component {
                 Dodaj
               </button>
             </form>
+            <button className="btn btn-sm btn-danger" onClick={this.logout}>Wyloguj</button>
           </div>
         }
       </div>

@@ -26,7 +26,7 @@ class Inventory extends React.Component {
 
     if (Array.isArray(this.state.books)) {
       bookList = this.state.books.map(book => {
-        return <BookView book={book} addToOrder={this.props.addToOrder} />;
+        return <BookView key={book.name} book={book} addToOrder={this.props.addToOrder} />;
       });     
     }
 
