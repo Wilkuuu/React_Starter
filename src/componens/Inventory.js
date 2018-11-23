@@ -1,6 +1,6 @@
 import React from "react";
 import BookView from "./BookView";
-import { fbase, firebaseApp } from "../fbase";
+import { fbase } from "../fbase";
 
 class Inventory extends React.Component {
   constructor() {
@@ -26,7 +26,7 @@ class Inventory extends React.Component {
 
     if (Array.isArray(this.state.books)) {
       bookList = this.state.books.map(book => {
-        return <BookView book={book} addToOrder={this.props.addToOrder} />;
+        return <BookView key={book.name} book={book} addToOrder={this.props.addToOrder} />;
       });     
     }
 
