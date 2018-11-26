@@ -7,6 +7,7 @@ class AdminPanel extends React.Component {
   constructor() {
     super();
     this.state = {
+      isLogged: false,
       books: [],
       book: {
         name: "",
@@ -14,8 +15,7 @@ class AdminPanel extends React.Component {
         description: "",
         onStock: false,
         image: ""
-      },
-      isLogged: false
+      }
     };
   }
 
@@ -55,21 +55,21 @@ class AdminPanel extends React.Component {
         description: "",
         onStock: true,
         image: ""
-      },
-     
+      }
     });
   };
 
   componentDidMount() {
-    if (localStorage.getItem("login")) {
+    
+    if (localStorage.getItem("login") === null) {
+      localStorage.setItem("login", this.state.isLogged);
+    } else {
       this.setState({ isLogged: localStorage.getItem("login") });
-      console.log(this.state);
+      this.ref = fbase.syncState("bookstore/books", {
+        context: this,
+        state: "books"
+      });
     }
-
-    this.ref = fbase.syncState("bookstore/books", {
-      context: this,
-      state: "books"
-    });
   }
 
   componentWillUnmount() {
@@ -77,28 +77,26 @@ class AdminPanel extends React.Component {
   }
 
   changeLoggedIn = () => {
-    this.setState({ isLogged: !this.isLogged });
-    localStorage.setItem("login", this.isLogged);
+    console.log("In", this.state.isLogged);
+    this.setState({ isLogged: !this.state.isLogged });
+    console.log("Out", this.state.isLogged);
+    localStorage.setItem("login", this.state.isLogged);
   };
 
-  logout = () =>  {    
+  logout = () => {
+    this.setState({ isLogged: !this.state.isLogged });
+    console.log("Wyl;ogowanie ze statusem ", this.state.isLogged);
+    localStorage.setItem("login", this.state.isLogged);
     firebaseApp.auth().signOut();
-    this.setState({ isLogged: !this.isLogged });
-  }
-
-    
-  
+  };
 
   render() {
     return (
       <div>
-        {this.state.isLogged && (
-          <LogInForm
-            changeLoggedIn={this.changeLoggedIn}
-            isLogged={this.state.isLogged}
-          />
-        )}
         {!this.state.isLogged && (
+          <LogInForm changeLoggedIn={this.changeLoggedIn} />
+        )}
+        {this.state.isLogged && (
           <BookForm
             logout={this.logout}
             addNewBook={this.addNewBook}
@@ -106,9 +104,6 @@ class AdminPanel extends React.Component {
             handleChange={this.handleChange}
           />
         )}
-        
-         
-        
       </div>
     );
   }
