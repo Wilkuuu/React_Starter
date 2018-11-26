@@ -19,6 +19,8 @@ class App extends React.Component {
     });
   };
 
+ 
+
   removeFromOrder = title => {
     this.setState({
       order: this.state.order.filter(book => title !== book.name)

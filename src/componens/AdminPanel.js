@@ -60,16 +60,18 @@ class AdminPanel extends React.Component {
   };
 
   componentDidMount() {
-    
-    if (localStorage.getItem("login") === null) {
-      localStorage.setItem("login", this.state.isLogged);
-    } else {
-      this.setState({ isLogged: localStorage.getItem("login") });
-      this.ref = fbase.syncState("bookstore/books", {
-        context: this,
-        state: "books"
-      });
-    }
+    firebaseApp.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log("status", user);
+      } else {
+        console.log("nieznany status");
+      }
+    });
+    this.setState({ isLogged: localStorage.getItem("login") });
+    this.ref = fbase.syncState("bookstore/books", {
+      context: this,
+      state: "books"
+    });
   }
 
   componentWillUnmount() {
@@ -77,17 +79,18 @@ class AdminPanel extends React.Component {
   }
 
   changeLoggedIn = () => {
-    console.log("In", this.state.isLogged);
     this.setState({ isLogged: !this.state.isLogged });
-    console.log("Out", this.state.isLogged);
-    localStorage.setItem("login", this.state.isLogged);
   };
 
   logout = () => {
-    this.setState({ isLogged: !this.state.isLogged });
-    console.log("Wyl;ogowanie ze statusem ", this.state.isLogged);
-    localStorage.setItem("login", this.state.isLogged);
-    firebaseApp.auth().signOut();
+    firebaseApp
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log("Logout");
+        this.setState({ isLogged: false });
+        console.log("change status");
+      });
   };
 
   render() {

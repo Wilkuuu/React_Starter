@@ -10,6 +10,8 @@ class Inventory extends React.Component {
     };
   }
 
+  
+
   componentDidMount() {
     this.ref = fbase.syncState("bookstore/books", {
       context: this,
@@ -20,13 +22,21 @@ class Inventory extends React.Component {
   componentWillUnmount() {
     fbase.removeBinding(this.ref);
   }
+  
+
+  delete = title => {  
+    this.setState({ 
+    books :this.state.books.filter(book => title !== book.name)
+    }) 
+  
+  }
 
   render() {
     let bookList = <h4> Brak danych</h4>;
 
     if (Array.isArray(this.state.books)) {
       bookList = this.state.books.map(book => {
-        return <BookView key={book.name} book={book} addToOrder={this.props.addToOrder} />;
+        return <BookView key={book.name} book={book} addToOrder={this.props.addToOrder} delete={this.delete}/>;
       });     
     }
 
@@ -39,5 +49,6 @@ class Inventory extends React.Component {
 
   }
 }
+
 
 export default Inventory;
