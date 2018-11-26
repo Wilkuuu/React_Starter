@@ -2,6 +2,8 @@ import React from "react";
 import { fbase, firebaseApp } from "../fbase";
 import BookForm from "./BookForm";
 import LogInForm from "./LogInForm";
+import AdminBookView from "./AdminBookList";
+import AdminBookList from "./AdminBookList";
 
 class AdminPanel extends React.Component {
   constructor() {
@@ -59,7 +61,14 @@ class AdminPanel extends React.Component {
     });
   };
 
-  componentDidMount() {
+
+  delete = title => {  
+    this.setState({ 
+    books :this.state.books.filter(book => title !== book.name)
+    }) }
+  
+
+  componentDidMount(){
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
         console.log("status", user);
@@ -67,15 +76,16 @@ class AdminPanel extends React.Component {
         console.log("nieznany status");
       }
     });
-    this.setState({ isLogged: localStorage.getItem("login") });
+    
     this.ref = fbase.syncState("bookstore/books", {
       context: this,
       state: "books"
-    });
+    })
   }
+  
 
   componentWillUnmount() {
-    fbase.removeBinding(this.ref);
+    fbase.removeBinding(this.ref); 
   }
 
   changeLoggedIn = () => {
@@ -100,12 +110,15 @@ class AdminPanel extends React.Component {
           <LogInForm changeLoggedIn={this.changeLoggedIn} />
         )}
         {this.state.isLogged && (
+          <React.Fragment>
           <BookForm
             logout={this.logout}
             addNewBook={this.addNewBook}
             book={this.state.book}
             handleChange={this.handleChange}
           />
+          <AdminBookList delete={this.delete} books={this.state.books}/>
+          </React.Fragment>
         )}
       </div>
     );

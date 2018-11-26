@@ -24,7 +24,7 @@ export default class BookView extends React.Component {
           >
             Dodaj do zamówienia
           </button>
-          <button onClick={ () => this.props.delete(this.props.book.name)}>Usuń</button>
+          
           
           <p className="description">{this.props.book.description}</p>
         </div>
