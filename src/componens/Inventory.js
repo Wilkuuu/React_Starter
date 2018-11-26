@@ -6,7 +6,7 @@ class Inventory extends React.Component {
   constructor() {
     super();
     this.state = {
-        books:[]
+      books: []
     };
   }
 
@@ -26,8 +26,14 @@ class Inventory extends React.Component {
 
     if (Array.isArray(this.state.books)) {
       bookList = this.state.books.map(book => {
-        return <BookView key={book.name} book={book} addToOrder={this.props.addToOrder} />;
-      });     
+        return (
+          <BookView
+            key={book.name}
+            book={book}
+            addToOrder={this.props.addToOrder}
+          />
+        );
+      });
     }
 
     return (
@@ -36,7 +42,6 @@ class Inventory extends React.Component {
         {bookList}
       </div>
     );
-
   }
 }
 

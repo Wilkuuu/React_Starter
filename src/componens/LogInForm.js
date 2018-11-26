@@ -1,5 +1,6 @@
 import React from "react";
 import {firebaseApp  } from "../fbase";
+import {Link} from 'react-router-dom';
 
 export default class LogInForm extends React.Component {
   constructor() {
@@ -12,18 +13,30 @@ export default class LogInForm extends React.Component {
   }
 
   autenticate = event => {
+
+   
     
     event.preventDefault();
-     firebaseApp.auth().signInWithEmailAndPassword(
-        this.state.email,
-        this.state.password
-      )   
-      .then(() => {
-       this.props.changeLoggedIn(true)
-      })
-      .catch(() => {
-        console.log("Error");
-      });
+    //  firebaseApp.auth().signInWithEmailAndPassword(
+    //     this.state.email,
+    //     this.state.password
+    //   )   
+    //   .then(() => {
+    //   this.props.changeLogIn();
+    //   console.log('potwierdzono')
+    //   })
+    //   .catch(() => {
+    //     console.log("Error");
+    //   })
+
+    firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    .then(() =>{
+      console.log('Zalogowano')
+      this.props.changeLoggedIn();
+    }) 
+    .catch(() =>{
+      console.log('Error')
+    })
   };
 
   handleLoginChange = event => {
@@ -67,6 +80,7 @@ export default class LogInForm extends React.Component {
             </div>
           </div>
         </div>
+        <Link to="/"><button className="btn btn-block btn-info"><i className="fa fa-home">Powrót</i></button></Link>
         <div className="col-4" />
       </React.Fragment>
     );

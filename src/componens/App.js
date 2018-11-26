@@ -2,13 +2,14 @@ import React from "react";
 import Header from "./Header";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
+import Footer from './Footer';
 import "../index.css";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      order: []
+      order: [],
     };
   }
 
@@ -17,6 +18,8 @@ class App extends React.Component {
       order: [...this.state.order, book]
     });
   };
+
+ 
 
   removeFromOrder = title => {
     this.setState({
@@ -35,6 +38,9 @@ class App extends React.Component {
             order={this.state.order}
             removeFromOrder={this.removeFromOrder}
           />
+        </div>
+        <div className="row footer">
+          <Footer/>
         </div>
       </div>
     );

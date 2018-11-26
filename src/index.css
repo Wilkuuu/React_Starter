@@ -45,3 +45,22 @@ code {
 .goToAdmin {
   float: right;
 }
+
+.footer {
+  background-color: black;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;  
+  text-align: center;
+  
+}
+
+.description {
+  border: 1px solid black;
+}
+
+.gatunek {
+  left: 0;
+}
