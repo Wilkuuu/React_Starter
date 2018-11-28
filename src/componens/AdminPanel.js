@@ -22,44 +22,13 @@ class AdminPanel extends React.Component {
     };
   }
 
-  handleChange = event => {
-    let newBook;
+  addNewBook = book => {
+    console.log('w Add w admin Panelu', book)
     
-
-    if (event.target.name === "onStock") {
-      newBook = {
-        ...this.state.book,
-        [event.target.name]: event.target.checked
-      };
-    } else {
-      newBook = {
-        ...this.state.book,
-        [event.target.name]: event.target.value
-      };
-    }
     this.setState({
-      book: newBook
-    });
-  };
-
-  addNewBook = event => {
-    event.preventDefault();
-    let newBook = { ...this.state.book };
-
-    if (Array.isArray(this.state.books)) {
-      this.setState({ books: [...this.state.books, newBook] });
-    } else {
-      this.setState({ books: [newBook] });
-    }
-
-    this.setState({
-      book: {
-        name: "",
-        author: "",
-        description: "",
-        onStock: true,
-        image: ""
-      }
+      books: [...this.state.books, book],
+      editMode: false,
+      bookToEdit: {}
     });
   };
 
@@ -86,7 +55,6 @@ class AdminPanel extends React.Component {
 
   editBook = bookToEdit => {
     this.setState({ editMode: true, bookToEdit: bookToEdit });
-    
 
     // if (event.target.name === "onStock") {
     //   this.editBook = {
@@ -109,8 +77,7 @@ class AdminPanel extends React.Component {
   }
 
   changeLoggedIn = () => {
-    
-    this.setState({ isLogged: !this.state.isLogged });    
+    this.setState({ isLogged: !this.state.isLogged });
     localStorage.setItem("isLogged", this.state.isLogged);
   };
 
@@ -119,10 +86,10 @@ class AdminPanel extends React.Component {
       .auth()
       .signOut()
       .then(() => {
-        console.log("Logout");       
-        
+        console.log("Logout");
+
         this.changeLoggedIn();
-        console.log('change status',this.state.isLogged)
+        console.log("change status", this.state.isLogged);
       });
   };
 
@@ -140,13 +107,11 @@ class AdminPanel extends React.Component {
               handleChange={this.handleChange}
               editMode={this.state.editMode}
               book={this.state.bookToEdit}
-              
             />
             <AdminBookList
               delete={this.delete}
               books={this.state.books}
               editBook={this.editBook}
-              
             />
           </React.Fragment>
         )}

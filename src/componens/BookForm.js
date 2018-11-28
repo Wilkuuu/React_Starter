@@ -1,20 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default class BookForm extends React.Component {
+class AddBookForm extends React.Component {
   constructor() {
     super();
     this.state = {
       book: {
         name: "",
-        author:"",
+        author: "",
         description: "",
-        image:"",
+        image: "",
         onStock: true,
-        price:""
+        price: ""
       }
     };
   }
+
+  handleChange = event => {
+    let newBook;
+
+    if (event.target.name === "onStock") {
+      newBook = {
+        ...this.props.book,
+        [event.target.name]: event.target.checked
+      };
+    } else {
+      newBook = {
+        ...this.props.book,
+        [event.target.name]: event.target.value
+      };
+    }
+    this.props.updateBook(newBook);
+  };
+
+  addNewBook = event => {
+    event.preventDefault();
+
+    if (!this.props.editMode) {
+      const newBook = { ...this.props.book };
+      this.props.addNewBook(newBook);
+    } else {
+    }
+
+    this.props.updateBook({
+      name: "",
+      author: "",
+      description: "",
+      onStock: true,
+      image: ""
+    });
+  };
 
   render() {
     const label = this.props.editMode ? "Edytuj" : "Dodaj";
@@ -22,7 +58,7 @@ export default class BookForm extends React.Component {
     return (
       <React.Fragment>
         <div className="adminpanel col-md-4">
-          <form onSubmit={this.props.addNewBook}>
+          <form onSubmit={this.addNewBook}>
             <div className="form-group">
               <input
                 type="text"
@@ -30,8 +66,8 @@ export default class BookForm extends React.Component {
                 id="name"
                 name="name"
                 className="form-control"
-                onChange={this.props.handleChange}
-                value={this.state.book.name || this.props.book.name}
+                onChange={this.handleChange}
+                value={this.props.book.name}
               />
             </div>
             <div className="form-group">
@@ -41,8 +77,8 @@ export default class BookForm extends React.Component {
                 id="genre"
                 name="genre"
                 className="form-control"
-                onChange={this.props.handleChange}
-                value={this.state.book.genre || this.props.book.genre}
+                onChange={this.handleChange}
+                value={this.props.book.genre}
               />
             </div>
             <div className="form-group">
@@ -52,8 +88,8 @@ export default class BookForm extends React.Component {
                 id="author"
                 name="author"
                 className="form-control"
-                onChange={this.props.handleChange}
-                value={this.state.book.author || this.props.book.author}
+                onChange={this.handleChange}
+                value={this.props.book.author}
               />
             </div>
             <div className="form-group">
@@ -63,8 +99,8 @@ export default class BookForm extends React.Component {
                 id="price"
                 name="price"
                 className="form-control"
-                onChange={this.props.handleChange}
-                value={this.state.book.price || this.props.book.price}
+                onChange={this.handleChange}
+                value={this.props.book.price}
               />
             </div>
             <div className="form-group">
@@ -73,10 +109,8 @@ export default class BookForm extends React.Component {
                 id="description"
                 name="description"
                 className="form-control"
-                onChange={this.props.handleChange}
-                value={
-                  this.props.book.description || this.props.book.description
-                }
+                onChange={this.handleChange}
+                value={this.props.book.description}
               />
             </div>
             <div className="form-group">
@@ -89,7 +123,7 @@ export default class BookForm extends React.Component {
                 id="onStock"
                 name="onStock"
                 className="form-check"
-                onChange={this.props.handleChange}
+                onChange={this.handleChange}
                 value={this.props.book.onStock}
               />
             </div>
@@ -99,7 +133,7 @@ export default class BookForm extends React.Component {
                 id="image"
                 name="image"
                 className="form-control"
-                onChange={this.props.handleChange}
+                onChange={this.handleChange}
                 value={this.props.book.image}
               />
             </div>
@@ -120,3 +154,22 @@ export default class BookForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    book: state.book
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateBook: book => dispatch({ type: "updateBook", payload: book })
+  };
+};
+
+const BookForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddBookForm);
+
+export default BookForm;
